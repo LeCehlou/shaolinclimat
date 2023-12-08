@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Climate Change Game</title>
+    <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="questions.js"></script>
+    <script src="main.js"></script>
+
 </head>
     <body id="earth-background">
 
+        <img id="ombre" src="Ombre.svg" alt="Earth Shadow">
         <img id="earth" src="Terre.svg" alt="Rotating Earth">
 
         <div class="cloud cloud1">
@@ -25,25 +30,44 @@
         <div class="cloud cloud5">
             <img src="Mogus.svg" alt="Cloud Image">
         </div>
+        <button onclick="generateData()">generate Data</button>>
+        <button onclick="finishGame()">FinishGame</button>>
 
         <!-- Top Section -->
         <div id="top-section">
-            <div id="climat"><p>Climat</p></div>
-            <div id="pollution"><p>Pollution</p></div>
-            <div id="year">Year: 1950</div>
-            <div id="ressource"><p>Ressource</p></div>
-            <div id="politique"><p>Politique</p></div>
+
+            <div class="stat">
+                <img src="Climat.svg" alt="Climat Icon">
+                <progress id="climat" max="100" value="0"></progress>
+            </div>
+            <div class="stat">
+                <img src="Pollution.svg" alt="Pollution Icon">
+                <progress id="pollution" max="100" value="0"></progress>
+            </div>
+            <div class="stat">
+                <label for="year">Year: <span id="currentYear">1950</span></label>
+            </div>
+            <div class="stat">
+                <img src="Ressource.svg" alt="Ressource Icon">
+                <progress id="ressource" max="100" value="0"></progress>
+            </div>
+            <div class="stat">
+                <img src="Energie.svg" alt="Energie Icon">
+                <progress id="energie" max="100" value="0"></progress>
+            </div>
+            
+
         </div>
 
         <!-- Middle Section -->
         <div id="middle-section">
             <div class="card-container">
-                <div class="card" id="card1">
+                <div class="card" id="card1" onclick="onClickCard(1)">
                     <img src="test1.svg" alt="Card Image"> <!-- Replace with the correct image extension -->
                     <p>Card Description</p>
                 </div>
                 
-                <div class="card" id="card2">
+                <div class="card" id="card2" onclick="onClickCard(2)">
                     <img src="Terre.jpg" alt="Card Image"> <!-- Replace with the correct image extension -->
                     <p>Card Description</p>
                 </div>
@@ -52,8 +76,9 @@
 
         <!-- Bottom Section -->
         <div id="bottom-section">
-            <div id="questionBox">Question: What energy factory will you build?</div>
+            <div id="questionBox">
+                <p>What will you do?</p>
+            </div>
         </div>
-
     </body>
 </html>
