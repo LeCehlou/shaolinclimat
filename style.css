@@ -4,9 +4,8 @@
 #top-section {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    align-items: center;    
     height: 10%;
-    border: 2px solid red; /* Outline */
 }
 
 #middle-section {
@@ -23,14 +22,42 @@
     justify-content: center; /* Center the content horizontally */
     align-items: center; /* Center the content vertically */
     height: 30%;
-    border: 2px solid green; /* Outline */
 }
 
 /* Stat Bars */
-.stat-bar {
-    height: 20px;
-    width: 20%;
-    border: 1px solid #000; /* Outline */
+.stat {
+    position: relative;
+    width: 20%; /* Adjust the width as needed for 5 cells */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+/* Update the style for the img inside the stat class */
+.stat img {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-200%, 12%);
+    z-index: 1;
+
+    height: 80%; /* Adjust the height of the icons */
+    margin-right: 8px; /* Add some spacing between the icon and the progress bar */
+}
+
+/* Update the style for the progress bar inside the stat class */
+.stat progress {
+    width: 80%; /* Adjust the width as needed, e.g., 80% */
+    height: 50%; /* Adjust the height as needed */
+    border-radius: 20px;
+    position: relative; 
+    z-index: 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
 }
 
 .red-bar {
@@ -69,24 +96,19 @@
 
 /* Cards */
 .card {
-    border-radius: 10px;
+    overflow: hidden;
+    border-radius: 20px;
     background-color: #FFF;   
     height: 80%;
     width: 40%;
     text-align: center;
-    padding: 10px;  
     transition: transform 0.3s ease-out, filter 0.3s ease-out; /* Add transition effect */
-
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     /* Add hover styles */
     &:hover {
         transform: scale(1.1); /* Make the card a bit bigger on hover */
         filter: brightness(1.2); /* Make the card a bit lighter in color on hover */
     }
-}
-
-.card img{
-    max-width: 100%; /* Ensure the image stays within the card */
-    border-radius: 10px; /* Add rounded corners to the image */
 }
 
 /* Bottom Section */
@@ -95,22 +117,20 @@
 /* Question Box */
 #questionBox {
 
-    background-image: url("./Livre.svg");
-    width: 50%;
-    height: 100%;
-    border: 1px solid #000; /* Outline */
+    border-radius: 20px;
+    background-color: #FFF;
+    width: 80vh;
+    height: 100%;   
     text-align: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 body {
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #87CEEB, #ffffff); /* Blue to white gradient */
-    background-attachment: fixed; /* Fix the background while scrolling */
-    overflow: hidden; /* Hide overflow content from the rotating Earth */
+    background-attachment: fixed; 
+    overflow: hidden; 
     height: 100vh;
     width: 100vw;
 }
@@ -124,6 +144,15 @@ body {
     transform: translate(-100%, 0); /* Center the Earth horizontally */
     z-index: -2; /* Move the Earth behind other content */
     animation: rotateEarth 100s linear infinite; /* Rotate the Earth continuously */
+}
+
+#ombre {
+    position: absolute;
+    top: 30%; /* Position the Earth above the visible area */
+    left: 125%;
+    width: 150vw; /* Full width of the viewport */
+    transform: translate(-100%, 0); /* Center the Earth horizontally */
+    z-index: -1; /* Move the Earth behind other content */
 }
 
 .cloud {
@@ -187,33 +216,3 @@ body {
         transform: translate(-50%, 0) rotate(360deg);
     }
 }   
-
-.modal{
-    /* Hidden by default */
-    display:none;
-    position: absolute;
-    right: -500px;
-    -webkit-animation: slide 0.5s forwards;
-    -webkit-animation-delay: 0.5s;
-    animation: slide 0.5s forwards;
-    width: 50%; /* Full width */
-    height: 50%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-content {
-    background-color: #fefefe;
-
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-}
-@-webkit-keyframes slide {
-    100% { right: 0; }
-}
-
-@keyframes slide {
-    100% { right: 0; }
-}
