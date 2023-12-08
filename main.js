@@ -25,6 +25,15 @@ let listeAnnees = [{annee : 1770 , fixe : true}, {annee : 1950, fixe : true}, {a
 let nombreAnnes = listeAnnees.length
 let indexAnnee = 0;
 
+function showModal() {
+    var modal= document.getElementById("InformationModale")
+    modal.style.display = "block";
+    }
+function closeModal() {
+    var modal= document.getElementById("InformationModale")
+    modal.style.display = "none";
+}
+
 function calculateBars() {
     pollutionValue = (co2 + dechet) / 2
     climatValue = (temperature + catastrophe + ozone) / 3
@@ -45,7 +54,7 @@ function playTurn(question) {
     showCards(question)
     while (true) {
         //Besoin d'attendre un listener 
-        
+
     }
     //Récupérer le bon choix
     //choix = [....]
