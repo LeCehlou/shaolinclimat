@@ -58,15 +58,7 @@ function showCards() {
     //
 }
 
-function playTurn(question) {
-    showCards(question)
-    enAttente = true
-    while (enAttente);
 
-    if (question.modale != null) {
-        //showModal(que)
-    }
-}
 
 function onClickCard(number) {
     enAttente = false
@@ -94,18 +86,6 @@ function SendToChart(){
     JSON.stringify(mainHistory)
     console.log(mainHistory)
 
-}
-function gameLoop() {
-    while (true) {
-        question = getQuestionActuelle(listeAnnees[indexAnnee].fixe)
-        playTurn(question)
-        calculateBars()
-        updateProgressBars() 
-        indexAnnee++;
-        if (indexAnnee > nombreAnnes - 1) {
-            break;
-        }
-    }
 }
 
 
