@@ -60,28 +60,36 @@ const json = {questions : [
             }
         ,
         fixe : true,
-        poids : 50
+        poids : 50,
+        modale : {
+            texte : "aaaa",
+            img : "Ombre.svg"
+        }
     },
 
     {
         texte : "Premier rapport du giec :",
-        condition : "false",
+        condition : "true",
         choix1:
             {
                 texte: "Commencer à prévenir et à agir",
                 consequence: "",
-                img:""
+                img:"Livre.svg"
             }
         ,
         choix2:
             {
                 texte: "Investir dans les technologies",
                 consequence: "",
-                img:""
+                img:"Livre.svg"
             }
         ,
-        fixe : false,
-        poids : 50
+        fixe : true,
+        poids : 50,
+        modale : {
+            texte : "aaaa",
+            img : "Ombre.svg"
+        }
     },
 
     {
@@ -91,18 +99,22 @@ const json = {questions : [
             {
                 texte: "Ivestir dans les voiture électrique",
                 consequence: "co2 += 100;",
-                img:""
+                img:"Pollution.svg"
             }
         ,
         choix2:
             {
                 texte: "Investir dans les transports en communs",
                 consequence: "",
-                img:""
+                img:"Pollution.svg"
             }
         ,
         fixe : true,
-        poids : 50
+        poids : 50,
+        modale : {
+            texte : "aaaa",
+            img : "Ombre.svg"
+        }
     },
 
 ]}
