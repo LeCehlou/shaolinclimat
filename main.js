@@ -1,9 +1,11 @@
 //Variables affichées
 let climatValue
-let pollutionValue 
+let pollutionValue
 let ressourceValue
-let energieValue
-
+var historyCo2=[]
+var historyDechet=[]
+var historyTemperature=[]
+var mainHistory = {co2:historyCo2,temperature:historyTemperature,dechet:historyDechet}
 //Variables sub
 var co2 = 10
 var dechet= 10
@@ -77,6 +79,22 @@ function onClickCard(number) {
     eval(choix.consequence)
     
 }   
+function generateData(){
+    historyCo2.push(co2)
+    historyDechet.push(dechet)
+    historyTemperature.push(temperature)
+    co2+=Math.floor(Math.random() * 10);
+    dechet+=Math.floor(Math.random() * 10);
+    temperature+=Math.floor(Math.random() * 10);
+}
+function finishGame(){
+    SendToChart()
+}
+function SendToChart(){
+    JSON.stringify(mainHistory)
+    console.log(mainHistory)
+
+}
 function gameLoop() {
     while (true) {
         question = getQuestionActuelle(listeAnnees[indexAnnee].fixe)
