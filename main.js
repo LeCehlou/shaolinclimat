@@ -1,7 +1,7 @@
 //Variables affichées
-let climatValue
-let pollutionValue
-let ressourceValue
+let climatValue = 0
+let pollutionValue = 0
+let ressourceValue = 0
 var historyCo2=[]
 var historyDechet=[]
 var historyTemperature=[]
@@ -29,22 +29,14 @@ let indexAnnee = 0
 enAttente = false
 question = null
 choix = null
+audioActive = false
 
-function showModal() {
-    var modal= document.getElementById("InformationModale")
-    modal.style.display = "block";
-    }
-function closeModal() {
-    var modal= document.getElementById("InformationModale")
-            modal.style.display = "none";
-}
 
 function calculateBars() {
     pollutionValue = (co2 + dechet) / 2
     climatValue = (temperature + ozone) / 2
     ressourceValue = (nature + metal + fossile) / 3
     energieValue = (production + consommation) / 2
-    console.log(pollutionValue)
 }
 
 function updateProgressBars() {
@@ -54,8 +46,17 @@ function updateProgressBars() {
     document.getElementById('energie').value = energieValue
 }
 
-function showCards() {
-    //
+function showCards() {   
+    card1Image = document.getElementById("imageCard1");
+    card2Image = document.getElementById("imageCard2");
+    card1Image.setAttribute("src",question.question.choix1.img);
+    card2Image.setAttribute("src",question.question.choix2.img);
+
+    card1Description = document.getElementById("descriptionCard1");
+    card2Description = document.getElementById("descriptionCard2");
+    card1Description.innerText = question.question.choix1.texte;
+    card2Description.innerText = question.question.choix2.texte;
+
 }
 
 
@@ -69,6 +70,9 @@ function onClickCard(number) {
         choix = question.question.choix2
     }
     eval(choix.consequence)
+    if (question.question.modale != null) {
+        showModal(question  )
+    }
     
 }   
 function generateData(){
@@ -88,6 +92,44 @@ function SendToChart(){
 
 }
 
+function changeGradientCSS() {
+
+}
+
+function playSound() {
+    const audio = document.getElementById("myAudio")
+    const oldAttribute = audio.getAttribute("src")
+    if (pollutionValue === 'undefined' || pollutionValue < 33) {
+        audio.setAttribute("src", "./musiques/BoucleBienInGame.mp3")
+    }
+    if (pollutionValue > 33 && pollutionValue < 66) {
+        audio.setAttribute("src", "./musiques/BoucleMoyenInGame.mp3")
+    }
+    else {
+         audio.setAttribute("src", "./musiques/BoucleSauceInGame.mp3")
+    }
+    if (oldAttribute != audio.getAttribute("src")) {
+        audio.pause();
+        audio.currentTime=0;
+        audio.play();
+    }
+}
+
+function stopStartSound() {
+    const audio = document.getElementById("myAudio")
+    if (audioActive) {
+        audio.pause();
+        audio.currentTime=0;
+        document.getElementById("sound-icon").setAttribute("src","PadSon.svg");
+    }
+    else {
+        audio.play();
+        document.getElementById("sound-icon").setAttribute("src","Son.svg");
+
+    }
+    audioActive = !audioActive
+    
+}
 
 async function playTurnAsync(question) {
     return new Promise((resolve) => {
@@ -106,18 +148,28 @@ async function playTurnAsync(question) {
     });
 }
 
+
 async function gameLoopAsync() {
     for (let i = 0; i < nombreAnnes; i++) {
         question = getQuestionActuelle(listeAnnees[indexAnnee].fixe);
+        document.getElementById("description").innerText = question.question.texte
         await playTurnAsync(question);
         indexAnnee++;
         calculateBars();
         updateProgressBars();
+        changeGradientCSS();
+        playSound()
         if (indexAnnee > nombreAnnes - 1) {
             break;
+        }
+        else {
+
+            document.getElementById("currentYear").innerText = listeAnnees[indexAnnee].annee
         }
     }
 }
 
 // Call gameLoopAsync somewhere in your code
-gameLoopAsync();
+document.addEventListener("DOMContentLoaded" , function(e) {
+    gameLoopAsync();
+})

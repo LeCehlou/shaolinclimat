@@ -5,11 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Climate Change Game</title>
     <link rel="stylesheet" href="style.css">
+    <script src="PopUpModale.js"></script>
     <script src="questions.js"></script>
     <script src="main.js"></script>
 
 </head>
     <body id="earth-background">
+        <div id="popup-overlay">
+            <div id="popup">
+                <div class="box" id="top-left-box">
+                    <!-- Your graph content for the top-left box goes here -->
+                </div>
+                <div class="box" id="top-right-box">
+                    <!-- Your graph content for the top-right box goes here -->
+                </div>
+                <div class="box" id="bottom-left-box">
+                    <!-- Your graph content for the bottom-left box goes here -->
+                </div>
+                <div class="box" id="bottom-right-box">
+                    <p> a </p>
+                    <button id="rejouer-button">Rejouer</button>
+                </div>
+            </div>
+        </div>
+            <!-- Temp -->
+
+    <div id="InformationModale" class="modal">
+        <div id="ModalContent">
+            <!-- Illustration Band -->
+            <div class="illustration-band">
+                <img id="modaleImg" src="test1.svg" alt="Card Image">
+            </div>
+    
+            <!-- modal Description -->
+            <div class="card-description">
+                <p id="modaleTexte">Card Description</p>
+            </div>
+    
+            <!-- Close Button -->
+            <button id="closeBtn" onclick="closeModal()">X</button>
+        </div>
+    </div>
+    
 
         <img id="ombre" src="Ombre.svg" alt="Earth Shadow">
         <img id="earth" src="Terre.svg" alt="Rotating Earth">
@@ -29,8 +66,8 @@
         <div class="cloud cloud5">
             <img src="Mogus.svg" alt="Cloud Image">
         </div>
-        <button onclick="generateData()">generate Data</button>>
-        <button onclick="finishGame()">FinishGame</button>>
+        <!--<button onclick="generateData()">generate Data</button>>
+        <button onclick="finishGame()">FinishGame</button>> !-->
 
         <!-- Top Section -->
         <div id="top-section">
@@ -44,7 +81,7 @@
                 <progress id="pollution" max="100" value="0"></progress>
             </div>
             <div class="stat">
-                <label for="year">Year: <span id="currentYear">1950</span></label>
+                <label for="year">Année: <span id="currentYear">1770</span></label>
             </div>
             <div class="stat">
                 <img src="Ressource.svg" alt="Ressource Icon">
@@ -62,13 +99,13 @@
         <div id="middle-section">
             <div class="card-container">
                 <div class="card" id="card1" onclick="onClickCard(1)">
-                    <img src="test1.svg" alt="Card Image"> <!-- Replace with the correct image extension -->
-                    <p>Card Description</p>
+                    <img id="imageCard1" src="" alt="Card Image"> <!-- Replace with the correct image extension -->
+                    <p id="descriptionCard1">Card Description</p>
                 </div>
                 
                 <div class="card" id="card2" onclick="onClickCard(2)">
-                    <img src="Terre.jpg" alt="Card Image"> <!-- Replace with the correct image extension -->
-                    <p>Card Description</p>
+                    <img id="imageCard2" src="" alt="Card Image"> <!-- Replace with the correct image extension -->
+                    <p id="descriptionCard2">Card Description</p>
                 </div>
             </div>
         </div>
@@ -77,7 +114,13 @@
         <div id="bottom-section">
             <div id="questionBox">
                 <p>What will you do?</p>
+                <p id="description"></p>
             </div>
+        </div>
+        <audio id="myAudio" src="./musiques/BoucleBienInGame.mp3"></audio>  
+
+        <div id="music-toggle" onclick="stopStartSound()">
+            <img id="sound-icon" src="Padson.svg" alt="Sound On">
         </div>
     </body>
 </html>

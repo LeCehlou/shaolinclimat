@@ -1,4 +1,71 @@
 /* style.css */
+/* style.css */
+
+.modal {
+    /* Hidden by default */
+    z-index: 2;
+    display: none;
+    position: absolute;
+    right: -500px;
+    top: 10%;
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 0.5s;
+    animation: slide 0.5s forwards;
+    width: 80vh; /* Full width */
+    height: 60vh; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #fff; /* Fallback color */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-top-left-radius: 20px; /* Round the top-left corner */
+    border-bottom-left-radius: 20px;
+}
+
+.illustration-band img {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover; /* Ensure the image covers the entire space */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%; /* Take full width */
+    box-sizing: border-box; /* Include padding and border in the total width */
+}
+
+.card-description {
+    margin-top: 20px; /* Add some margin between the illustration and text */
+}
+
+#closeBtn {
+    width: 40px; /* Adjust the width to make it twice as big */
+    height: 40px; /* Adjust the height to make it twice as big */
+    font-size: 20px; /* Adjust the font size for a larger cross */
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add pointer cursor for better user experience */
+    color: #fff; /* Set the initial color of the cross */
+    position: absolute; /* Position the button relative to its containing element */
+    top: 10px; /* Adjust the top position */
+    left: 10px; /* Adjust the left position */
+    z-index: 3; /* Ensure it's above other content */
+}
+
+#closeBtn:hover {
+    color: #08b; /* Change color to blue on hover */
+}
+
+
+@-webkit-keyframes slide {
+    100% { right: 0; }
+}
+
+@keyframes slide {
+    100% { right: 0; }
+}
+
+
 
 /* Top Section */
 #top-section {
@@ -214,3 +281,23 @@ body {
         transform: translate(-50%, 0) rotate(360deg);
     }
 }   
+
+#music-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+#sound-icon {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain;
+}
+
+#music-toggle:hover #sound-icon {
+    filter: brightness(1.2); 
+}
